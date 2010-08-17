@@ -1,0 +1,8 @@
+Utilities for backing-up and manipulating your Delicious.com data.
+
+delicious-dump:
+delicious-dump/delicious-dump-allposts.php .... Get all bookmarks for a user.
+delicious-dump/delicious-dump-alltags.php ..... Get all tags for a user.
+
+delicious-xml2rss:
+delicious-xml2rss/delicious-xml2rss.php ....... Convert a "posts/all" XML file to an RSS feed.
