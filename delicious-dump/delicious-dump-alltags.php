@@ -29,9 +29,16 @@
   $oPhpDelicious = new PhpDelicious(AUTH_DELICIOUS_USERNAME, AUTH_DELICIOUS_PASSWORD);
   if ($sXml = $oPhpDelicious->HttpRequest($sCmd)) {
    if (strlen($sXml) > 0) {
-     // Strip last two lines off the file, because these contain a timestamp
-     $sXml = substr($sXml, 0, strrpos($sXml,"\n"));
-     $sXml = substr($sXml, 0, strrpos($sXml,"\n"));
+     //// Strip last two lines off the file, because these contain a timestamp
+     //$sXml = substr($sXml, 0, strrpos($sXml,"\n"));
+     //$sXml = substr($sXml, 0, strrpos($sXml,"\n"));
+
+     // If $sXml contains no line-breaks, pretty-ify the XML
+     if (strpos($sXml, "\n") !== true) {
+       $sXml = str_replace("?><tags ","?>\n<tags ", $sXml);
+       $sXml = str_replace("><tag ",">\n  <tag ", $sXml);
+       $sXml = str_replace("></tags>",">\n</tags>", $sXml);
+     }
 
      fwrite(STDOUT, $sXml);
    }
